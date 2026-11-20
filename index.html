@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CampusOne | School POS & Finance</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="logo">C</div><div><b>CampusOne</b><small>School Management Suite</small></div></div>
+  <div class="nav-label">MAIN MENU</div>
+  <button class="nav active" data-page="dashboard"><i>▦</i> Dashboard</button>
+  <button class="nav" data-page="cashier"><i>₱</i> Tuition & Fees</button>
+  <button class="nav" data-page="canteen"><i>▣</i> Canteen POS</button>
+  <button class="nav" data-page="bookstore"><i>▤</i> Bookstore POS</button>
+  <button class="nav" data-page="students"><i>♙</i> Students</button>
+  <button class="nav" data-page="inventory"><i>▥</i> Inventory</button>
+  <button class="nav" data-page="transactions"><i>↗</i> Transactions</button>
+  <button class="nav" data-page="reports"><i>▧</i> Reports</button>
+  <div class="side-bottom"><div class="avatar">SA</div><div><b>School Admin</b><small>Administrator account</small></div><span class="online"></span></div>
+</aside>
+<main class="main">
+<header class="topbar"><button class="menu-btn" id="menuBtn">☰</button><div><small class="crumb">CAMPUSONE / SCHOOL WORKSPACE</small><h1 id="pageTitle">Dashboard</h1></div><div class="top-right"><span class="live-dot"></span><span>Demo environment</span><div class="avatar top-avatar">SA</div></div></header>
+
+<section class="page active" id="page-dashboard">
+ <div class="intro"><div><h2>Welcome back, Administrator</h2><p>Here is your school's financial and sales overview.</p></div><span class="demo-tag">SAMPLE DATA</span></div>
+ <div class="stats">
+  <article class="stat"><div class="stat-head">Fees collected <b class="ico violet">₱</b></div><strong id="feeTotal">₱0.00</strong><small>Recorded tuition and fee payments</small></article>
+  <article class="stat"><div class="stat-head">Canteen sales <b class="ico blue">▣</b></div><strong id="canteenTotal">₱0.00</strong><small>Completed canteen transactions</small></article>
+  <article class="stat"><div class="stat-head">Bookstore sales <b class="ico green">▤</b></div><strong id="bookTotal">₱0.00</strong><small>Completed bookstore transactions</small></article>
+  <article class="stat"><div class="stat-head">Enrolled students <b class="ico amber">♙</b></div><strong id="studentCount">0</strong><small>Sample student directory</small></article>
+ </div>
+ <div class="grid-two">
+  <article class="panel"><div class="panel-title"><div><h3>Recent activity</h3><p>Latest payment and sales records</p></div><button class="link-btn" data-go="transactions">View transactions →</button></div><div class="table-scroll"><table><thead><tr><th>REFERENCE</th><th>TYPE</th><th>DESCRIPTION</th><th>AMOUNT</th></tr></thead><tbody id="recentActivity"></tbody></table></div></article>
+  <article class="panel"><div class="panel-title"><div><h3>Collection snapshot</h3><p>Recorded revenue by module</p></div></div><div id="collectionSnapshot" class="snapshot"></div></article>
+ </div>
+ <div class="grid-two lower-grid">
+  <article class="panel"><div class="panel-title"><div><h3>Outstanding student balances</h3><p>Students with unpaid school fees</p></div><button class="link-btn" data-go="cashier">Open cashier →</button></div><div id="balanceWatch" class="watch"></div></article>
+  <article class="panel"><div class="panel-title"><div><h3>Inventory alerts</h3><p>Items at or below reorder level</p></div><button class="link-btn" data-go="inventory">View inventory →</button></div><div id="inventoryWatch" class="watch"></div></article>
+ </div>
+</section>
+
+<section class="page" id="page-cashier">
+ <div class="intro"><div><h2>Tuition & Fee Collection</h2><p>Look up a student, review their account, and record a payment.</p></div><span class="demo-tag">CASHIER MODULE</span></div>
+ <div class="cashier-layout">
+  <article class="panel"><div class="panel-title"><div><h3>Student account lookup</h3><p>Search by student name or student number</p></div></div><input class="search" id="studentSearch" placeholder="Search student..."><div id="studentResults" class="student-results"></div></article>
+  <article class="panel account-panel"><div class="panel-title"><div><h3>Account details</h3><p id="accountHint">Select a student to view their account.</p></div></div><div id="accountDetails" class="account-empty">♙<br>Select a student from the list.</div></article>
+ </div>
+</section>
+
+<section class="page" id="page-canteen">
+ <div class="intro"><div><h2>Canteen Point of Sale</h2><p>Process student and staff purchases.</p></div><span class="demo-tag">CANTEEN</span></div>
+ <div class="pos-layout"><article class="panel"><div class="toolbar"><input id="canteenSearch" placeholder="Search food and drinks..."><select id="canteenCategory"><option value="All">All categories</option></select></div><div id="canteenProducts" class="product-grid"></div></article><aside class="panel cart"><div class="panel-title"><div><h3>Canteen order</h3><p id="canteenCartCount">0 items</p></div><button class="link-btn" id="clearCanteen">Clear</button></div><div id="canteenCart" class="cart-lines"></div><div class="cart-total"><div><span>Subtotal</span><b id="canteenSubtotal">₱0.00</b></div><div class="grand"><span>Total</span><strong id="canteenGrand">₱0.00</strong></div><label>Payment method<select id="canteenPayment"><option>Cash</option><option>GCash</option><option>Card</option></select></label><button class="primary full" id="canteenCheckout">Complete sale</button></div></aside></div>
+</section>
+
+<section class="page" id="page-bookstore">
+ <div class="intro"><div><h2>Bookstore Point of Sale</h2><p>Sell uniforms, books, and school supplies.</p></div><span class="demo-tag">BOOKSTORE</span></div>
+ <div class="pos-layout"><article class="panel"><div class="toolbar"><input id="bookSearch" placeholder="Search books and supplies..."><select id="bookCategory"><option value="All">All categories</option></select></div><div id="bookProducts" class="product-grid"></div></article><aside class="panel cart"><div class="panel-title"><div><h3>Bookstore order</h3><p id="bookCartCount">0 items</p></div><button class="link-btn" id="clearBook">Clear</button></div><div id="bookCart" class="cart-lines"></div><div class="cart-total"><div><span>Subtotal</span><b id="bookSubtotal">₱0.00</b></div><div class="grand"><span>Total</span><strong id="bookGrand">₱0.00</strong></div><label>Payment method<select id="bookPayment"><option>Cash</option><option>GCash</option><option>Card</option></select></label><button class="primary full" id="bookCheckout">Complete sale</button></div></aside></div>
+</section>
+
+<section class="page" id="page-students">
+ <div class="intro"><div><h2>Student Directory</h2><p>Manage sample student profiles and fee balances.</p></div><button class="primary" id="addStudent">＋ Add student</button></div>
+ <div class="toolbar"><input id="directorySearch" placeholder="Search name, student number, or grade..."></div>
+ <article class="panel"><div class="table-scroll"><table><thead><tr><th>STUDENT NO.</th><th>STUDENT NAME</th><th>GRADE / LEVEL</th><th>TOTAL FEES</th><th>PAID</th><th>BALANCE</th><th>ACTION</th></tr></thead><tbody id="studentRows"></tbody></table></div></article>
+</section>
+
+<section class="page" id="page-inventory">
+ <div class="intro"><div><h2>Inventory Management</h2><p>Manage canteen and bookstore products in one place.</p></div><button class="primary" id="addProduct">＋ Add product</button></div>
+ <div class="toolbar"><input id="inventorySearch" placeholder="Search product or SKU..."><select id="inventoryModule"><option value="All">All modules</option><option>Canteen</option><option>Bookstore</option></select><select id="inventoryLevel"><option value="All">All stock levels</option><option value="Low">Low stock</option><option value="Out">Out of stock</option></select></div>
+ <article class="panel"><div class="table-scroll"><table><thead><tr><th>PRODUCT</th><th>SKU</th><th>MODULE</th><th>CATEGORY</th><th>PRICE</th><th>STOCK</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="inventoryRows"></tbody></table></div></article>
+</section>
+
+<section class="page" id="page-transactions">
+ <div class="intro"><div><h2>Transaction Records</h2><p>Tuition payments, canteen sales, and bookstore sales.</p></div><button class="secondary" id="exportTransactions">↓ Export CSV</button></div>
+ <div class="toolbar"><input id="transactionSearch" placeholder="Search reference, student, or payment..."><select id="transactionType"><option value="All">All transaction types</option><option>Tuition & Fees</option><option>Canteen</option><option>Bookstore</option></select></div>
+ <article class="panel"><div class="table-scroll"><table><thead><tr><th>REFERENCE</th><th>DATE / TIME</th><th>TYPE</th><th>DESCRIPTION</th><th>PAYMENT</th><th>AMOUNT</th></tr></thead><tbody id="transactionRows"></tbody></table></div></article>
+</section>
+
+<section class="page" id="page-reports">
+ <div class="intro"><div><h2>Reports & Analytics</h2><p>Review collections, sales, and stock performance.</p></div><button class="secondary" id="reportExport">↓ Export CSV</button></div>
+ <div class="stats report-stats"><article class="stat"><div class="stat-head">Total revenue</div><strong id="reportRevenue">₱0.00</strong><small>All recorded transactions</small></article><article class="stat"><div class="stat-head">Tuition outstanding</div><strong id="reportOutstanding">₱0.00</strong><small>Remaining sample student balances</small></article><article class="stat"><div class="stat-head">Inventory value</div><strong id="reportInventory">₱0.00</strong><small>Current selling-price value</small></article></div>
+ <div class="grid-two"><article class="panel"><div class="panel-title"><div><h3>Revenue by module</h3><p>Recorded transaction totals</p></div></div><div id="revenueBreakdown" class="snapshot"></div></article><article class="panel"><div class="panel-title"><div><h3>Top-selling items</h3><p>Based on POS transaction records</p></div></div><div id="topItems" class="watch"></div></article></div>
+</section>
+<footer>CampusOne School POS <span>•</span> Interactive prototype · Data is stored in this browser only</footer>
+</main>
+</div>
+
+<div class="modal-bg" id="productModal"><div class="modal"><div class="modal-head"><div><h3 id="productModalTitle">Add product</h3><p>Enter product information.</p></div><button class="x" data-close="productModal">×</button></div><form id="productForm"><input type="hidden" id="productId"><label>Product name<input id="productName" required></label><div class="form-grid"><label>SKU<input id="productSku" required></label><label>Module<select id="productModule"><option>Canteen</option><option>Bookstore</option></select></label></div><div class="form-grid"><label>Category<input id="productCategory" required></label><label>Price (₱)<input id="productPrice" type="number" min="0" step=".01" required></label></div><div class="form-grid"><label>Stock<input id="productStock" type="number" min="0" required></label><label>Reorder level<input id="productReorder" type="number" min="0" value="5" required></label></div><div class="modal-actions"><button type="button" class="secondary" data-close="productModal">Cancel</button><button class="primary">Save product</button></div></form></div></div>
+<div class="modal-bg" id="studentModal"><div class="modal"><div class="modal-head"><div><h3>Add student</h3><p>Create a sample student account.</p></div><button class="x" data-close="studentModal">×</button></div><form id="studentForm"><label>Student number<input id="newStudentNo" required></label><label>Full name<input id="newStudentName" required></label><label>Grade / level<input id="newStudentGrade" required placeholder="e.g. Grade 8"></label><label>Total fees (₱)<input id="newStudentFees" type="number" min="0" required></label><div class="modal-actions"><button type="button" class="secondary" data-close="studentModal">Cancel</button><button class="primary">Save student</button></div></form></div></div>
+<div class="modal-bg" id="paymentModal"><div class="modal"><div class="modal-head"><div><h3>Record student payment</h3><p id="paymentStudentName"></p></div><button class="x" data-close="paymentModal">×</button></div><form id="paymentForm"><input type="hidden" id="paymentStudentId"><label>Payment amount (₱)<input id="paymentAmount" type="number" min=".01" step=".01" required></label><label>Payment method<select id="feePaymentMethod"><option>Cash</option><option>GCash</option><option>Bank transfer</option><option>Card</option></select></label><div class="modal-actions"><button type="button" class="secondary" data-close="paymentModal">Cancel</button><button class="primary">Record payment</button></div></form></div></div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body></html>
